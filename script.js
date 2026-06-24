@@ -6,7 +6,6 @@ const images = [
 ];
 
 const track = document.getElementById('galleryTrack');
-const dotsContainer = document.getElementById('dotsContainer');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 
@@ -20,17 +19,11 @@ function initGallery() {
 
     track.innerHTML = images.map(src => `<img src="${src}" class="slide-img" alt="Gallery Image">`).join('');
 
-    dotsContainer.innerHTML = images.map((_, index) => `<div class="dot ${index === 0 ? 'active' : ''}" data-index="${index}"></div>`).join('');
-
     updateGallery();
 }
 
 function updateGallery() {
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    document.querySelectorAll('.dot').forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentIndex);
-    });
 }
 
 nextBtn.addEventListener('click', () => {
@@ -39,15 +32,8 @@ nextBtn.addEventListener('click', () => {
 });
 
 prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length; 
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
     updateGallery();
-});
-
-dotsContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('dot')) {
-        currentIndex = parseInt(e.target.getAttribute('data-index'));
-        updateGallery();
-    }
 });
 
 initGallery();
