@@ -50,5 +50,4 @@ dotsContainer.addEventListener('click', (e) => {
     }
 });
 
-// 7. CRITICAL: This line actually triggers the execution when the page loads!
 initGallery();
